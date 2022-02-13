@@ -40,15 +40,16 @@ function setup() {
   score=0;
   fruitGroup=createGroup();
   monsterGroup=createGroup();
-  
+
+
+
 }
 
 function draw() {
   background("green");
   
   if(gameState===PLAY){
-    
-
+  
     //Call fruits and Monster function
     fruits();
     Monster();
@@ -72,6 +73,7 @@ function draw() {
       // score=2;
        score=score+2;
 
+    
     }
     else
     {
@@ -91,6 +93,7 @@ function draw() {
         knife.scale=2;
         knife.x=300;
         knife.y=300;
+      
       }
     }
   }
@@ -115,12 +118,19 @@ function Monster(){
 }
 
 function fruits(){
+  
   if(World.frameCount%80===0){
-    fruit=createSprite(400,200,20,20);
-    fruit.x = 0    
+    fruit=createSprite(0,0,0,20);
+      fruit.x = Math.round(random(0,400));  
+      fruit.y = 600
+ 
+      if(fruit.y >= 100){
+        fruit.velocityY = 12
+      }
+      
   //Increase the velocity of fruit after score 4 
 
-       fruit.velocityX= (7+(score/4));
+      fruit.velocityY= -(7+(score/4));
       // fruit.velocityY= (7+(score));
       // fruit.velocity= (7+(score/4));
       // fruit.velocityX= (7);
@@ -138,11 +148,11 @@ function fruits(){
       fruit.addImage(fruit4);
     }
     
-    fruit.y=Math.round(random(50,550));
    
     
     fruit.setLifetime=100;
     
     fruitGroup.add(fruit);
+    
   }
 }
